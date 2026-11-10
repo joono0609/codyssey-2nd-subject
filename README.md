@@ -10,8 +10,10 @@ Python 기본 문법 과 객체지향 프로그램을 활용하여 터미널에�
 **문항 수** 5 문항 이상(각 문항은 문제 , 선택지 4개 , 정답) 
 
 ## 4. 파일 구조
+<pre>
 2st_subject/
 ├── quiz.py        # Quiz 클래스
 ├── quiz_game.py   # QuizGame 클래스
 ├── main.py        # 실행 파일
 └── state.json     # (자동 생성됨)
+</pre>
