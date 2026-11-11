@@ -123,6 +123,37 @@ class QuizGame:
         print("4. 점수 확인")
         print("5. 종료")
 
+    # ---------- 퀴즈 풀기 ----------
+    def play(self):
+        """모든 퀴즈를 순서대로 풀고 점수를 계산한다."""
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+
+        correct = 0  # 맞힌 개수
+        for quiz in self.quizzes:
+            quiz.show()
+            user = self.safe_input("정답 번호를 입력하세요(1~4): ")
+            if not user.isdigit():
+                print("숫자를 입력해야 합니다. 오답 처리됩니다.")
+                continue
+            if quiz.check(int(user)):
+                print("정답입니다! ⭕")
+                correct += 1
+            else:
+                print(f"오답입니다. ❌ 정답은 {quiz.answer}번입니다.")
+
+        # 맞힌 개수 → 100점 만점 백분율로 변환
+        score = round(correct / len(self.quizzes) * 100)
+        print(f"\n이번 점수: {score}점 (맞힌 개수: {correct} / {len(self.quizzes)})")
+
+        # 최고 점수 갱신
+        if score > self.best_score:
+            self.best_score = score
+            print("🎉 최고 점수를 경신했습니다!")
+        self.last_score = score
+        self.save()
+
     # ---------- 실행 루프 ----------
     def run(self):
         """메뉴를 반복 출력하며 선택에 따라 기능을 실행한다."""
@@ -131,13 +162,13 @@ class QuizGame:
             choice = self.safe_input("메뉴를 선택하세요: ")
 
             if choice == "1":
-               print("퀴즈풀기")
+                self.play()
             elif choice == "2":
-               print("퀴즈추가")
+                self.add_quiz()
             elif choice == "3":
-               print("퀴즈목록보기")
+                self.show_list()
             elif choice == "4":
-               print("점수확인")
+                self.show_score()
             elif choice == "5":
                 print("게임을 종료합니다. 수고하셨어요! 👋")
                 break
