@@ -16,17 +16,17 @@ class Quiz:
         self.answer = answer            # 정답 번호(1~4)
 
     def show(self):
-        """문제와 선택지를 화면에 출력한다."""
+        # 문제와 선택지를 화면에 출력한다.
         print(f"\nQ. {self.question}")
         for idx, choice in enumerate(self.choices, start=1):
             print(f"  {idx}. {choice}")
 
     def check(self, user_answer):
-        """사용자 입력(번호)이 정답인지 확인한다."""
+        # 사용자 입력(번호)이 정답인지 확인한다.
         return user_answer == self.answer
 
     def to_dict(self):
-        """JSON 저장을 위해 딕셔너리로 변환한다."""
+        # SON 저장을 위해 딕셔너리로 변환한다.
         return {
             "question": self.question,
             "choices": self.choices,
@@ -35,7 +35,7 @@ class Quiz:
 
     @staticmethod
     def from_dict(data):
-        """딕셔너리로부터 Quiz 객체를 생성한다."""
+        # 딕셔너리로부터 Quiz 객체를 생성한다.
         return Quiz(data["question"], data["choices"], data["answer"])
 
 
@@ -51,7 +51,7 @@ class QuizGame:
 
     # ---------- 기본 데이터 ----------
     def default_quizzes(self):
-        """파일이 없을 때 사용할 기본 퀴즈 5문제."""
+        # 파일이 없을 때 사용할 기본 퀴즈 5문제. 
         return [
             Quiz("리스트를 생성하는 올바른 문법은?",
                  ["list = ()", "list = []", "list = {}", "list = <>"], 2),
@@ -67,7 +67,7 @@ class QuizGame:
   
     # ---------- 파일 저장/불러오기 ----------
     def save(self):
-        """quizzes와 best_score를 state.json에 UTF-8로 저장한다."""
+        # quizzes와 best_score를 state.json에 UTF-8로 저장한다.
         data = {
             "quizzes": [q.to_dict() for q in self.quizzes],
             "best_score": self.best_score,
@@ -79,7 +79,7 @@ class QuizGame:
             print(f"저장 중 오류가 발생했습니다: {e}")
 
     def load(self):
-        """state.json을 불러온다. 없거나 손상되면 기본 데이터를 사용한다."""
+        # state.json을 불러온다. 없거나 손상되면 기본 데이터를 사용한다.
         if not os.path.exists(STATE_FILE):
             # 파일이 없는 첫 실행 → 기본 퀴즈 사용
             self.quizzes = self.default_quizzes()
@@ -101,10 +101,9 @@ class QuizGame:
 
     # ---------- 안전한 입력 ----------
     def safe_input(self, prompt):
-        """
-        Ctrl+C(KeyboardInterrupt)나 입력 종료(EOFError)가 발생해도
-        프로그램이 종료되지 않도록 처리하는 입력 함수.
-        """
+        # Ctrl+C(KeyboardInterrupt)나 입력 종료(EOFError)가 발생해도
+        # 프로그램이 종료되지 않도록 처리하는 입력 함수.
+
         while True:
             try:
                 return input(prompt)
@@ -115,7 +114,7 @@ class QuizGame:
 
     # ---------- 메뉴 ----------
     def show_menu(self):
-        """메뉴를 출력한다."""
+        # 메뉴를 출력한다."""
         print("\n===== 파이썬 퀴즈 게임 =====")
         print("1. 퀴즈 풀기")
         print("2. 퀴즈 추가")
@@ -125,7 +124,7 @@ class QuizGame:
 
     # ---------- 퀴즈 풀기 ----------
     def play(self):
-        """모든 퀴즈를 순서대로 풀고 점수를 계산한다."""
+        # 모든 퀴즈를 순서대로 풀고 점수를 계산한다.
         if not self.quizzes:
             print("등록된 퀴즈가 없습니다.")
             return
@@ -174,7 +173,7 @@ class QuizGame:
     
     # ---------- 목록 보기 ----------
     def show_list(self):
-        """등록된 퀴즈 목록을 보여준다."""
+        # 등록된 퀴즈 목록을 보여준다.
         if not self.quizzes:
             print("등록된 퀴즈가 없습니다.")
             return
@@ -184,7 +183,7 @@ class QuizGame:
 
     # ---------- 점수 확인 ----------
     def show_score(self):
-        """이번 점수와 최고 점수를 함께 보여준다."""
+        # 이번 점수와 최고 점수를 함께 보여준다.
         last = getattr(self, "last_score", None)
         if last is None:
             print("아직 퀴즈를 풀지 않았습니다.")
@@ -194,7 +193,7 @@ class QuizGame:
 
     # ---------- 실행 루프 ----------
     def run(self):
-        """메뉴를 반복 출력하며 선택에 따라 기능을 실행한다."""
+        # 메뉴를 반복 출력하며 선택에 따라 기능을 실행한다.
         while True:
             self.show_menu()
             choice = self.safe_input("메뉴를 선택하세요: ")
