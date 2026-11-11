@@ -15,6 +15,24 @@ class Quiz:
         self.choices = choices          # 리스트, 기본 4개
         self.answer = answer            # 정답 번호(1~4)
 
+    def show(self):
+        """문제와 선택지를 화면에 출력한다."""
+        print(f"\nQ. {self.question}")
+        for idx, choice in enumerate(self.choices, start=1):
+            print(f"  {idx}. {choice}")
+
+    def check(self, user_answer):
+        """사용자 입력(번호)이 정답인지 확인한다."""
+        return user_answer == self.answer
+
+    def to_dict(self):
+        """JSON 저장을 위해 딕셔너리로 변환한다."""
+        return {
+            "question": self.question,
+            "choices": self.choices,
+            "answer": self.answer,
+        }
+
     @staticmethod
     def from_dict(data):
         """딕셔너리로부터 Quiz 객체를 생성한다."""
@@ -26,7 +44,7 @@ class QuizGame:
     게임 전체를 관리하는 클래스.
     속성: quizzes(퀴즈 목록), best_score(최고 점수)
     """
-    def __init__(self):
+    def __init__(self):S
         self.quizzes = []
         self.best_score = 0
   
@@ -40,9 +58,9 @@ class QuizGame:
             try:
                 return input(prompt)
             except KeyboardInterrupt:
-                print("\n(종료하려면 메뉴에서 0번을 선택하세요.)")
+                print("\n(종료하려면 메뉴에서 5번을 선택하세요.)")
             except EOFError:
-                print("\n(입력이 종료되었습니다. 메뉴에서 0번을 선택하세요.)")
+                print("\n(입력이 종료되었습니다. 메뉴에서 5번을 선택하세요.)")
 
     # ---------- 메뉴 ----------
     def show_menu(self):
