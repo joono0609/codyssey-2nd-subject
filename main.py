@@ -154,6 +154,24 @@ class QuizGame:
         self.last_score = score
         self.save()
 
+    # ---------- 퀴즈 추가 ----------
+    def add_quiz(self):
+        """사용자로부터 새 퀴즈를 입력받아 추가한다."""
+        question = self.safe_input("문제를 입력하세요: ")
+        choices = []
+        for i in range(1, 5):
+            c = self.safe_input(f"{i}번 선택지: ")
+            choices.append(c)
+
+        answer = self.safe_input("정답 번호(1~4): ")
+        if not answer.isdigit() or not (1 <= int(answer) <= 4):
+            print("정답은 1~4 사이 숫자여야 합니다. 추가를 취소합니다.")
+            return
+
+        self.quizzes.append(Quiz(question, choices, int(answer)))
+        self.save()
+        print("퀴즈가 추가되었습니다! ✅")
+
     # ---------- 실행 루프 ----------
     def run(self):
         """메뉴를 반복 출력하며 선택에 따라 기능을 실행한다."""
