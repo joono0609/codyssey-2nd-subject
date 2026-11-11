@@ -182,6 +182,16 @@ class QuizGame:
         for idx, quiz in enumerate(self.quizzes, start=1):
             print(f"{idx}. {quiz.question}")
 
+    # ---------- 점수 확인 ----------
+    def show_score(self):
+        """이번 점수와 최고 점수를 함께 보여준다."""
+        last = getattr(self, "last_score", None)
+        if last is None:
+            print("아직 퀴즈를 풀지 않았습니다.")
+        else:
+            print(f"이번 점수: {last}점")
+        print(f"최고 점수: {self.best_score}점")
+
     # ---------- 실행 루프 ----------
     def run(self):
         """메뉴를 반복 출력하며 선택에 따라 기능을 실행한다."""
