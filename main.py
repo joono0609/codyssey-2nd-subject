@@ -44,10 +44,61 @@ class QuizGame:
     게임 전체를 관리하는 클래스.
     속성: quizzes(퀴즈 목록), best_score(최고 점수)
     """
-    def __init__(self):S
+    def __init__(self):
         self.quizzes = []
         self.best_score = 0
+        self.load()   # 시작 시 파일 불러오기
+
+    # ---------- 기본 데이터 ----------
+    def default_quizzes(self):
+        """파일이 없을 때 사용할 기본 퀴즈 5문제."""
+        return [
+            Quiz("리스트를 생성하는 올바른 문법은?",
+                 ["list = ()", "list = []", "list = {}", "list = <>"], 2),
+            Quiz("문자열 길이를 구하는 함수는?",
+                 ["size()", "count()", "len()", "length()"], 3),
+            Quiz("딕셔너리를 나타내는 기호는?",
+                 ["[]", "()", "<>", "{}"], 4),
+            Quiz("반복을 멈추는 키워드는?",
+                 ["stop", "break", "exit", "end"], 2),
+            Quiz("주석을 작성할 때 사용하는 기호는?",
+                 ["//", "#", "/* */", "--"], 2),
+        ]
   
+    # ---------- 파일 저장/불러오기 ----------
+    def save(self):
+        """quizzes와 best_score를 state.json에 UTF-8로 저장한다."""
+        data = {
+            "quizzes": [q.to_dict() for q in self.quizzes],
+            "best_score": self.best_score,
+        }
+        try:
+            with open(STATE_FILE, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+        except OSError as e:
+            print(f"저장 중 오류가 발생했습니다: {e}")
+
+    def load(self):
+        """state.json을 불러온다. 없거나 손상되면 기본 데이터를 사용한다."""
+        if not os.path.exists(STATE_FILE):
+            # 파일이 없는 첫 실행 → 기본 퀴즈 사용
+            self.quizzes = self.default_quizzes()
+            self.best_score = 0
+            self.save()
+            return
+
+        try:
+            with open(STATE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            self.quizzes = [Quiz.from_dict(q) for q in data["quizzes"]]
+            self.best_score = data.get("best_score", 0)
+        except (json.JSONDecodeError, KeyError, TypeError):
+            # 파일이 손상된 경우
+            print("저장 파일이 손상되어 기본 퀴즈로 시작합니다.")
+            self.quizzes = self.default_quizzes()
+            self.best_score = 0
+            self.save()
+
     # ---------- 안전한 입력 ----------
     def safe_input(self, prompt):
         """

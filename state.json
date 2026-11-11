@@ -1,0 +1,55 @@
+{
+  "quizzes": [
+    {
+      "question": "리스트를 생성하는 올바른 문법은?",
+      "choices": [
+        "list = ()",
+        "list = []",
+        "list = {}",
+        "list = <>"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "문자열 길이를 구하는 함수는?",
+      "choices": [
+        "size()",
+        "count()",
+        "len()",
+        "length()"
+      ],
+      "answer": 3
+    },
+    {
+      "question": "딕셔너리를 나타내는 기호는?",
+      "choices": [
+        "[]",
+        "()",
+        "<>",
+        "{}"
+      ],
+      "answer": 4
+    },
+    {
+      "question": "반복을 멈추는 키워드는?",
+      "choices": [
+        "stop",
+        "break",
+        "exit",
+        "end"
+      ],
+      "answer": 2
+    },
+    {
+      "question": "주석을 작성할 때 사용하는 기호는?",
+      "choices": [
+        "//",
+        "#",
+        "/* */",
+        "--"
+      ],
+      "answer": 2
+    }
+  ],
+  "best_score": 0
+}
