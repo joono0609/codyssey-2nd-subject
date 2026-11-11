@@ -171,6 +171,16 @@ class QuizGame:
         self.quizzes.append(Quiz(question, choices, int(answer)))
         self.save()
         print("퀴즈가 추가되었습니다! ✅")
+    
+    # ---------- 목록 보기 ----------
+    def show_list(self):
+        """등록된 퀴즈 목록을 보여준다."""
+        if not self.quizzes:
+            print("등록된 퀴즈가 없습니다.")
+            return
+        print(f"\n총 {len(self.quizzes)}개의 퀴즈가 있습니다.")
+        for idx, quiz in enumerate(self.quizzes, start=1):
+            print(f"{idx}. {quiz.question}")
 
     # ---------- 실행 루프 ----------
     def run(self):
