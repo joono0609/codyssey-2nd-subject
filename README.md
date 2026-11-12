@@ -56,6 +56,12 @@ python main.py
 }
 ```
 
+경로: ./state.json
+
+- `quizzes`: quiz 리스트 (문제, 선택지 4개, 정답 1~4)
+- `best_score`: 최고 점수
+- `best_cnt`: 최고기록시 정답건수 / 전체문제건수
+
 
 
 ### 기능 목록 및 화면
