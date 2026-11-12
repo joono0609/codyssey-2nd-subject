@@ -100,8 +100,6 @@ Your branch is up to date with 'origin/main'.
 PS C:\Users\user\2st_subject> git merge dev-main
 Already up to date.
 
-dev-main 있어서 그런것임
-
 PS C:\Users\user\2st_subject> git checkout dev-main
 M       main.py
 Switched to branch 'dev-main'
