@@ -58,7 +58,7 @@ python main.py
 
 <img width="537" height="195" alt="image" src="https://github.com/user-attachments/assets/e1ea7975-d1b3-4999-ab4e-cbd38c91af5b" />
 
-### Git log graph 화면(git log --oneline --graph)
+git log --oneline --graph 결과
 
 <img width="1215" height="626" alt="image" src="https://github.com/user-attachments/assets/d4f23f6a-077f-4368-bdf1-b4f65900061e" />
 
