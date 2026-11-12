@@ -127,3 +127,29 @@ Fast-forward
  main.py | 39 +++++++++++++++++++++++++++++++++++----
  1 file changed, 35 insertions(+), 4 deletions(-)
 ```
+
+clone 을 이용하여 원격저장소에 있는 파일을 내려 봤고 그 파일을 수정 하고 다시 push 관련 log 
+
+```
+git clone https://github.com/joono0609/codyssey-2nd-subject.git -- 원격저장소에서 파일이 내려옴
+cd codyssey-2nd-subject
+code . 로 해서 main.py 를 수정 후
+
+PS C:\Users\user\2st_subject\codyssey-2nd-subject> git pull
+remote: Enumerating objects: 35, done.
+remote: Counting objects: 100% (35/35), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 31 (delta 18), reused 6 (delta 3), pack-reused 0 (from 0)
+Unpacking objects: 100% (31/31), 9.94 KiB | 124.00 KiB/s, done.
+From https://github.com/joono0609/codyssey-2nd-subject
+   6406e2d..11d27c1  main       -> origin/main
+Updating 6406e2d..11d27c1
+Fast-forward
+ README.md  | 112 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++----
+ main.py    |  10 +++++-
+ state.json |   7 ++--
+ 3 files changed, 119 insertions(+), 10 deletions(-)
+
+원격저장소에 있는 소스가 추가만 됨
+...
+
