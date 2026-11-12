@@ -22,8 +22,15 @@ python main.py
 └─ README.md
 ```
 
+### 기능 목록
+
+### 기능 목록 화면
+
+
+
 ### Git log graph 화면
 
-<img width="1223" height="638" alt="image" src="https://github.com/user-attachments/assets/fcdbe3cb-fa6e-40df-92a6-cb1781231b94" />
+<img width="1215" height="626" alt="image" src="https://github.com/user-attachments/assets/d4f23f6a-077f-4368-bdf1-b4f65900061e" />
+
 
 
