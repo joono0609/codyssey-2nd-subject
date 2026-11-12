@@ -201,6 +201,7 @@ class QuizGame:
     # ---------- 실행 루프 ----------
     def run(self):
         # 메뉴를 반복 출력하며 선택에 따라 기능을 실행한다.
+        os.system('cls' if os.name == 'nt' else 'clear')
         while True:
             self.show_menu()
             choice = self.safe_input("메뉴를 선택하세요: ")
