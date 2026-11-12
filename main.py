@@ -47,6 +47,7 @@ class QuizGame:
     def __init__(self):
         self.quizzes = []
         self.best_score = 0
+        self.best_cnt = ""
         self.load()   # 시작 시 파일 불러오기
 
     # ---------- 기본 데이터 ----------
@@ -71,6 +72,7 @@ class QuizGame:
         data = {
             "quizzes": [q.to_dict() for q in self.quizzes],
             "best_score": self.best_score,
+            "best_cnt": self.best_cnt,
         }
         try:
             with open(STATE_FILE, "w", encoding="utf-8") as f:
@@ -84,6 +86,7 @@ class QuizGame:
             # 파일이 없는 첫 실행 → 기본 퀴즈 사용
             self.quizzes = self.default_quizzes()
             self.best_score = 0
+            self.best_cnt = ""
             self.save()
             return
 
@@ -92,11 +95,13 @@ class QuizGame:
                 data = json.load(f)
             self.quizzes = [Quiz.from_dict(q) for q in data["quizzes"]]
             self.best_score = data.get("best_score", 0)
+            self.best_cnt = data.get("best_cnt", "")
         except (json.JSONDecodeError, KeyError, TypeError):
             # 파일이 손상된 경우
             print("저장 파일이 손상되어 기본 퀴즈로 시작합니다.")
             self.quizzes = self.default_quizzes()
             self.best_score = 0
+            self.best_cnt = ""
             self.save()
 
     # ---------- 안전한 입력 ----------
@@ -149,6 +154,7 @@ class QuizGame:
         # 최고 점수 갱신
         if score > self.best_score:
             self.best_score = score
+            self.best_cnt = "(맞힌 개수: " + str(correct) + " / " + str(len(self.quizzes)) + ")"
             print("🎉 최고 점수를 경신했습니다!")
         self.last_score = score
         self.save()
@@ -189,7 +195,8 @@ class QuizGame:
             print("아직 퀴즈를 풀지 않았습니다.")
         else:
             print(f"이번 점수: {last}점")
-        print(f"최고 점수: {self.best_score}점")
+            print(f"최고 점수: {self.best_score}점 {self.best_cnt}")
+
 
     # ---------- 실행 루프 ----------
     def run(self):
