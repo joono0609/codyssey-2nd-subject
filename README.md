@@ -16,9 +16,10 @@ Python 을 이용하여 터미널에서 동작하는 퀴즈게임을 개발하�
 | 실행 커맨드 | `python main.py` |
 
 ### 실행 방법
-
+```
 cd /Users/user/2st_subject
 python main.py
+```
 
 ### 파일 구조
 
