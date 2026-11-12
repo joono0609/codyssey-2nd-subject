@@ -31,6 +31,33 @@ python main.py
 └─ README.md
 ```
 
+### 데이터 파일 설명(state.json)
+
+저장 경로: 프로젝트 루트 `state.json`
+
+스키마 예시:
+```
+{
+  "quizzes": [
+    {
+      "question": "리스트를 생성하는 올바른 문법은?",
+      "choices": [
+        "list = ()",
+        "list = []",
+        "list = {}",
+        "list = <>"
+      ],
+      "answer": 2
+    }
+. . . 
+  ],
+  "best_score": 0,
+  "best_cnt": "(맞힌 개수: 0 / 0)"
+}
+```
+
+
+
 ### 기능 목록 및 화면
 
 * 퀴즈 목록 표시
