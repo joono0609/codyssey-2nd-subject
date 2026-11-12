@@ -62,5 +62,70 @@ git log --oneline --graph 결과
 
 <img width="1215" height="626" alt="image" src="https://github.com/user-attachments/assets/d4f23f6a-077f-4368-bdf1-b4f65900061e" />
 
+branch 및 merge 로그 
+```
+PS C:\Users\user\2st_subject> git checkout -b dev-main
+Switched to a new branch 'dev-main'
 
+PS C:\Users\user\2st_subject> git status
+On branch dev-main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        __pycache__/
+        test.py
 
+main.py 수정 후 저장
+
+git status 
+
+PS C:\Users\user\2st_subject> git status
+On branch dev-main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   main.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        __pycache__/
+        test.py
+
+git add main.py
+git commit -m "dev-main 브랜치 생성하고 퀴즈풀기 관련기능 추가 반영 "
+
+PS C:\Users\user\2st_subject> git checkout main
+M       main.py
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\user\2st_subject> git merge dev-main
+Already up to date.
+
+dev-main 있어서 그런것임
+
+PS C:\Users\user\2st_subject> git checkout dev-main
+M       main.py
+Switched to branch 'dev-main'
+PS C:\Users\user\2st_subject> git status
+On branch dev-main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   main.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        __pycache__/
+        test.py
+
+PS C:\Users\user\2st_subject> git commit -m "dev-main 브랜치 생성하고 퀴즈풀기 관련기능 추가 반영 "
+[dev-main 8fc5139] dev-main 브랜치 생성하고 퀴즈풀기 관련기능 추가 반영
+ 1 file changed, 35 insertions(+), 4 deletions(-)
+PS C:\Users\user\2st_subject>
+PS C:\Users\user\2st_subject> git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+PS C:\Users\user\2st_subject> git merge dev-main
+Updating 3837250..8fc5139
+Fast-forward
+ main.py | 39 +++++++++++++++++++++++++++++++++++----
+ 1 file changed, 35 insertions(+), 4 deletions(-)
+```
